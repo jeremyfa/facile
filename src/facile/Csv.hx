@@ -231,8 +231,10 @@ class Csv {
 #end
 
 #else
+        trace(str);
 
-        Facile.log.warning(str);
+        // TODO
+        //Facile.log.warning(str);
 
 #end
 

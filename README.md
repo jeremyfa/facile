@@ -2,7 +2,7 @@
 
 Jérémy `Fa`'s `C`urated `I`nventory of `L`ibrary `E`ssentials for [Haxe](https://haxe.org).
 
-**Facile** is a set of general purpose utilities that I use to _facilitate_ programming on my projects.
+**Facile** is a set of general purpose utilities that I use to _facilitate_ programming on my projects. It also means **easy** in French 🥖✨
 
 Maybe they can be useful to others?
 

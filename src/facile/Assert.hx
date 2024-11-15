@@ -22,9 +22,10 @@ class Assert {
         return macro @:pos(Context.currentPos()) {
             if (!$expr) {
                 #if facile_assert_print_stack
-                ceramic.Utils.printStackTrace();
+                Facile.printStackTrace(); // TODO
                 #end
-                ceramic.App.app.logger.error($v{str} + $reason);
+                haxe.Log.trace($v{str} + $reason);
+                //Facile.log.error($v{str} + $reason);
                 throw $v{str} + $reason;
             }
         }

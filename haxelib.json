@@ -4,9 +4,9 @@
     "license": "MIT",
     "tags": ["jeremyfa", "facile", "curated", "inventory", "library", "essentials", "general", "purpose", "helpers", "utils"],
     "description": "Jérémy Fa's Curated Inventory of Library Essentials",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "classPath": "src/",
-    "releasenote": "First batch of utils",
+    "releasenote": "Second batch of utils",
     "contributors": ["jeremyfa"],
     "dependencies": {}
   }
