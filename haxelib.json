@@ -1,0 +1,12 @@
+{
+    "name": "facile",
+    "url" : "https://github.com/jeremyfa/facile/",
+    "license": "MIT",
+    "tags": ["jeremyfa", "facile", "curated", "inventory", "library", "essentials", "general", "purpose", "helpers", "utils"],
+    "description": "Jérémy Fa's Curated Inventory of Library Essentials",
+    "version": "0.1.0",
+    "classPath": "src/",
+    "releasenote": "First batch of utils",
+    "contributors": ["jeremyfa"],
+    "dependencies": {}
+  }
