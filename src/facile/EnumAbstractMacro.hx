@@ -41,6 +41,33 @@ class EnumAbstractMacro {
         }
     }
 
+    public static macro function toCamelStringSwitch(typePath:Expr, e:Expr):Expr {
+
+        var type = Context.getType(typePath.toString());
+
+        switch (type.follow()) {
+            case TAbstract(_.get() => ab, _) if (ab.meta.has(":enum")):
+
+                var cases:Array<Case> = [];
+                for (field in ab.impl.get().statics.get()) {
+                    if (field.meta.has(":enum") && field.meta.has(":impl")) {
+                        var fieldName = field.name;
+                        var camelName = TextUtils.upperCaseToCamelCase(fieldName);
+                        cases.push({
+                            values: [macro $typePath.$fieldName],
+                            expr: macro $v{camelName}
+                        });
+                    }
+                }
+
+                return { pos: e.pos, expr: ESwitch(e, cases, null) };
+
+            default:
+                // The given type is not an abstract, or doesn't have @:enum metadata, show a nice error message.
+                throw new Error(type.toString() + " should be enum abstract", typePath.pos);
+        }
+    }
+
     public static macro function toStringSwitch(typePath:Expr, e:Expr):Expr {
 
         var type = Context.getType(typePath.toString());
