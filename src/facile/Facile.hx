@@ -37,7 +37,7 @@ class Facile {
                 trace(data);
                 #elseif android
                 trace('' + data);
-                #elseif sys
+                #elseif (sys || hxnodejs)
                 Sys.println('' + data);
                 #else
                 trace(data);
@@ -73,7 +73,28 @@ class Facile {
                 str = "a C function";
             case Module(m):
                 str = "module " + m;
-            case FilePos(itm, file, line):
+            case FilePos(itm, file, line, column):
+                // Try to resolve original source position using source maps
+                #if js
+                var originalFile = file;
+                var originalLine = line;
+                var originalColumn = column;
+
+                var decoder = JsSourceMap.getInstance();
+                if (decoder != null) {
+                    var original = decoder.getOriginalPosition(line, column);
+                    if (original != null) {
+                        originalFile = original.source;
+                        originalLine = original.line;
+                        originalColumn = original.column;
+                    }
+                }
+                #else
+                var originalFile = file;
+                var originalLine = line;
+                var originalColumn = column;
+                #end
+
                 if (itm != null) {
                     str = stackItemToString(itm);
                     if (colors) {
@@ -90,10 +111,10 @@ class Facile {
                         str += ' ';
                     }
                 }
-                str += file;
-                #if HXCPP_STACK_LINE
+                str += originalFile;
+                #if (!cpp || HXCPP_STACK_LINE)
                 str += ":";
-                str += line;
+                str += originalLine;
                 #end
                 if (colors) {
                     if (itm != null) {
